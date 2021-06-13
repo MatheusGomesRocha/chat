@@ -1,0 +1,283 @@
+.container {
+  width: 32.3rem;
+  height: 100vh;
+  background-color: #fbfaff;
+  overflow-y: scroll;
+  position: relative;
+
+  ::-webkit-scrollbar {
+    width: 1em;
+  }
+
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 2rem;
+    width: auto;
+    padding: 0 2rem;
+
+    h2 {
+      font-size: 2.25rem;
+      margin-left: 1.5rem;
+      font-weight: bold;
+    }
+
+    .messageNotRead {
+      background-color: var(--red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 20px;
+      margin-left: 1.5rem;
+
+      span {
+        color: var(--white);
+        font-size: 0.8rem;
+      }
+    }
+  }
+
+  .searchArea {
+    background-color: var(--input);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 20px;
+    height: 3rem;
+    border-radius: 25px;
+    margin: 2rem;
+
+    input {
+      flex: 1;
+      background-color: transparent;
+      margin-left: 15px;
+      height: 3rem;
+      border-radius: 25px;
+      font-size: 1rem;
+      outline: 0;
+      border: 0;
+
+      &::placeholder {
+        color: var(--gray-200);
+        font-size: 0.875rem;
+      }
+    }
+  }
+
+  .filterArea {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2rem;
+    padding: 0 2rem;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+
+      &:hover {
+        span {
+          color: var(--purple);
+        }
+      }
+
+      span {
+        color: var(--gray-350);
+        font-weight: bold;
+        font-size: 0.75rem;
+        margin-top: 0.75rem;
+        transition: 0.25s;
+      }
+    }
+  }
+
+  .messagesArea {
+    margin-top: 2rem;
+
+    .messageArea {
+      margin: 2rem 0;
+
+      .title {
+        color: var(--black);
+        font-weight: bold;
+        font-size: 0.85rem;
+        margin: 0 2rem;
+      }
+
+      .messageArray {
+        margin-top: 1rem;
+
+        section {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          cursor: pointer;
+          height: 6rem;
+          padding: 0 2rem;
+          transition: 0.25s;
+
+          & + section {
+            border-top: 1px solid var(--gray-500);
+          }
+
+          &:hover {
+            background: rgba(59, 0, 255, 0.03);
+          }
+
+          &.messageIsSelected {
+            background: linear-gradient(
+              90deg,
+              rgba(59, 0, 255, 0.08) 0%,
+              rgba(118, 77, 255, 0) 91%
+            );
+          }
+
+          img {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 25px;
+            margin-right: 1.5rem;
+          }
+
+          .imgGroup {
+            position: relative;
+
+            img {
+              position: relative;
+              top: -10px;
+              height: 2.5rem;
+              width: 2.5rem;
+              z-index: 2;
+            }
+
+            img + img {
+              position: absolute;
+              left: 15px;
+              top: 10px;
+              width: 2.5rem;
+              height: 2.5rem;
+              z-index: 3;
+            }
+
+            div {
+              background-color: var(--purple);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              position: absolute;
+              top: 20px;
+              left: -15px;
+              width: 2.5rem;
+              height: 2.5rem;
+              border-radius: 20px;
+              z-index: 1;
+
+              span {
+                color: var(--white);
+              }
+            }
+          }
+
+          .column {
+            width: 100%;
+          }
+
+          .topAreaInfo {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            .userName {
+              font-weight: bold;
+            }
+
+            .onlineIndicator {
+              background-color: var(--green);
+              width: 0.65rem;
+              height: 0.65rem;
+              border-radius: 10px;
+              margin-left: 1rem;
+            }
+
+            .lastMessageTime {
+              margin-left: auto;
+              color: var(--gray-350);
+              font-size: 0.75rem;
+            }
+          }
+
+          .bottomAreaInfo {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-top: 1rem;
+
+            p {
+              color: var(--gray-350);
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              max-width: 85%;
+              font-size: 0.75rem;
+
+              &.lastMessageContent {
+                color: #000;
+                font-weight: bold;
+              }
+            }
+
+            .notReadIndicator {
+              background-color: var(--red);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin-left: auto;
+              width: 1.6rem;
+              height: 1.6rem;
+              border-radius: 15px;
+
+              span {
+                color: var(--white);
+                font-size: 0.875rem;
+              }
+            } // .notReadIndicator
+          } // .bottomAreaInfo
+        } // section
+      } // .messageArray
+    } // .messageArea
+  } // .messagesArea
+
+  .newChatButton {
+    background-color: var(--purple);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 4rem;
+    left: 25rem;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 35px;
+    cursor: pointer;
+    transition: filter 250ms;
+
+    &:hover {
+      filter: brightness(0.8);
+    }
+  }
+} // .container-
